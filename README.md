@@ -45,7 +45,7 @@ To run the Tic-Tac-Toe game:
 
 or 
 
-Directly access the game by clicking this link
+Directly access the game by clicking this link : `https://aspirenex-tic-tac-toe.onrender.com/`
 
 ## How to Play
 
