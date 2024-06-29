@@ -3,7 +3,7 @@ from tictactoe_ai import find_best_move, evaluate, is_moves_left
 
 st.set_page_config(page_title="Unbeatable Tic-Tac-Toe AI", page_icon="🎮", layout="centered")
 
-# Custom CSS for improved styling
+
 st.markdown("""
 <style>
     .stButton > button {
@@ -35,7 +35,6 @@ st.markdown("""
 
 st.title("Tic-Tac-Toe: Human vs. AI")
 
-# Initialize session state variables
 if 'board' not in st.session_state:
     st.session_state.board = [[' ' for _ in range(3)] for _ in range(3)]
 if 'game_over' not in st.session_state:
@@ -43,13 +42,13 @@ if 'game_over' not in st.session_state:
 if 'result' not in st.session_state:
     st.session_state.result = None
 
-# Function to reset the game
+
 def reset_game():
     st.session_state.board = [[' ' for _ in range(3)] for _ in range(3)]
     st.session_state.game_over = False
     st.session_state.result = None
 
-# Create a 3x3 grid of buttons
+
 for i in range(3):
     cols = st.columns(3)
     for j in range(3):
@@ -57,7 +56,6 @@ for i in range(3):
                           disabled=st.session_state.game_over or st.session_state.board[i][j] != ' '):
             st.session_state.board[i][j] = 'O'
             
-            # Check if human wins
             if evaluate(st.session_state.board) == -10:
                 st.session_state.result = "O"
                 st.session_state.game_over = True
@@ -65,11 +63,9 @@ for i in range(3):
                 st.session_state.result = "Draw"
                 st.session_state.game_over = True
             else:
-                # AI's move
                 move = find_best_move(st.session_state.board)
                 st.session_state.board[move[0]][move[1]] = 'X'
                 
-                # Check if AI wins
                 if evaluate(st.session_state.board) == 10:
                     st.session_state.result = "X"
                     st.session_state.game_over = True
@@ -79,7 +75,6 @@ for i in range(3):
             
             st.experimental_rerun()
 
-# Display game result
 if st.session_state.game_over:
     if st.session_state.result == "O":
         st.markdown('<div class="game-over result-o">You win! Congratulations!</div>', unsafe_allow_html=True)
@@ -88,7 +83,6 @@ if st.session_state.game_over:
     elif st.session_state.result == "Draw":
         st.markdown('<div class="game-over result-draw">It\'s a draw!</div>', unsafe_allow_html=True)
 
-# Reset button
 if st.button("New Game"):
     reset_game()
     st.experimental_rerun()
